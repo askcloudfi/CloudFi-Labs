@@ -19,6 +19,7 @@
 - **[Technology Stack](./technology-stack.md)** - Detailed technology choices and rationale
 - **[Architecture Guide](./architecture.md)** - Technical architecture and system design
 - **[API Documentation](./api-documentation.md)** - REST and GraphQL API reference
+- **[Database Schema](./database-schema.md)** - Database structure and relationships
 - **[Setup Guide](./setup-guide.md)** - Complete development environment setup
 - **[Development Guidelines](./development-guidelines.md)** - Coding standards and best practices
 - **[Deployment Guide](./deployment-guide.md)** - Release management and deployment processes

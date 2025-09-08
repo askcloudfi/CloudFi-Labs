@@ -102,22 +102,9 @@ Authorization: Bearer <your-jwt-token>
 **Response:**
 ```json
 {
-  "status": "ok",
-  "timestamp": "2024-03-15T10:30:00.000Z",
-  "uptime": 3600.123
-}
-```
-
-#### GET /api/health
-**Description**: API health status with detailed information
-
-**Response:**
-```json
-{
-  "status": "ok",
-  "timestamp": "2024-03-15T10:30:00.000Z",
-  "version": "1.0.0",
-  "environment": "development"
+  "status": "OK",
+  "message": "CloudFi Labs API is running smoothly",
+  "timestamp": "2024-03-15T10:30:00.000Z"
 }
 ```
 
@@ -127,33 +114,22 @@ Authorization: Bearer <your-jwt-token>
 **Response:**
 ```json
 {
-  "status": "ok",
+  "status": "OK",
   "timestamp": "2024-03-15T10:30:00.000Z",
-  "system": {
-    "nodeVersion": "18.19.0",
-    "platform": "darwin",
-    "memory": {
-      "used": "45.2 MB",
-      "total": "512 MB"
-    }
+  "uptime": {
+    "seconds": 3600,
+    "human": "1h 0m 0s"
   },
-  "database": {
-    "status": "connected",
-    "responseTime": "12ms"
-  }
-}
-```
-
-#### GET /api/health/database
-**Description**: Database connection status
-
-**Response:**
-```json
-{
-  "status": "ok",
-  "database": "connected",
-  "responseTime": "8ms",
-  "timestamp": "2024-03-15T10:30:00.000Z"
+  "memory": {
+    "rss": "45MB",
+    "heapTotal": "30MB",
+    "heapUsed": "25MB",
+    "external": "5MB"
+  },
+  "environment": "development",
+  "version": "1.0.0",
+  "platform": "darwin",
+  "nodeVersion": "v18.19.0"
 }
 ```
 
@@ -191,10 +167,9 @@ Authorization: Bearer <jwt-token>
       }
     ],
     "pagination": {
-      "total": 50,
-      "page": 1,
-      "pages": 5,
-      "limit": 10,
+      "currentPage": 1,
+      "totalPages": 5,
+      "totalUsers": 50,
       "hasNext": true,
       "hasPrev": false
     }
@@ -205,8 +180,11 @@ Authorization: Bearer <jwt-token>
 #### GET /api/users/:id
 **Description**: Retrieve a specific user by ID
 
-**Parameters:**
-- `id`: User ID (required)
+**Request:**
+```http
+GET /api/users/clp123abc456
+Authorization: Bearer <jwt-token>
+```
 
 **Response:**
 ```json
@@ -218,10 +196,6 @@ Authorization: Bearer <jwt-token>
       "email": "user@example.com",
       "name": "John Doe",
       "role": "user",
-      "profile": {
-        "bio": "Financial analyst",
-        "avatar": "https://example.com/avatar.jpg"
-      },
       "createdAt": "2024-03-15T10:00:00.000Z",
       "updatedAt": "2024-03-15T10:00:00.000Z"
     }
@@ -235,42 +209,22 @@ Authorization: Bearer <jwt-token>
 **Request Body:**
 ```json
 {
-  "email": "newuser@example.com",
-  "password": "securePassword123",
-  "name": "Jane Smith",
+  "name": "John Doe",
+  "email": "user@example.com",
   "role": "user"
 }
 ```
 
-**Response:**
-```json
+**Request:**
+```http
+POST /api/users
+Content-Type: application/json
+Authorization: Bearer <jwt-token>
+
 {
-  "success": true,
-  "data": {
-    "user": {
-      "id": "clp789def012",
-      "email": "newuser@example.com",
-      "name": "Jane Smith",
-      "role": "user",
-      "createdAt": "2024-03-15T10:30:00.000Z",
-      "updatedAt": "2024-03-15T10:30:00.000Z"
-    }
-  },
-  "message": "User created successfully"
-}
-```
-
-#### PUT /api/users/:id
-**Description**: Update an existing user
-
-**Parameters:**
-- `id`: User ID (required)
-
-**Request Body:**
-```json
-{
-  "name": "John Updated Doe",
-  "role": "admin"
+  "name": "John Doe",
+  "email": "user@example.com",
+  "role": "user"
 }
 ```
 
@@ -282,9 +236,53 @@ Authorization: Bearer <jwt-token>
     "user": {
       "id": "clp123abc456",
       "email": "user@example.com",
-      "name": "John Updated Doe",
+      "name": "John Doe",
+      "role": "user",
+      "createdAt": "2024-03-15T10:00:00.000Z",
+      "updatedAt": "2024-03-15T10:00:00.000Z"
+    }
+  },
+  "message": "User created successfully"
+}
+```
+
+#### PUT /api/users/:id
+**Description**: Update an existing user
+
+**Request Body:**
+```json
+{
+  "name": "John Smith",
+  "email": "john.smith@example.com",
+  "role": "admin"
+}
+```
+
+**Request:**
+```http
+PUT /api/users/clp123abc456
+Content-Type: application/json
+Authorization: Bearer <jwt-token>
+
+{
+  "name": "John Smith",
+  "email": "john.smith@example.com",
+  "role": "admin"
+}
+```
+
+**Response:**
+```json
+{
+  "success": true,
+  "data": {
+    "user": {
+      "id": "clp123abc456",
+      "email": "john.smith@example.com",
+      "name": "John Smith",
       "role": "admin",
-      "updatedAt": "2024-03-15T10:35:00.000Z"
+      "createdAt": "2024-03-15T10:00:00.000Z",
+      "updatedAt": "2024-03-15T11:00:00.000Z"
     }
   },
   "message": "User updated successfully"
@@ -292,10 +290,13 @@ Authorization: Bearer <jwt-token>
 ```
 
 #### DELETE /api/users/:id
-**Description**: Delete a user (soft delete)
+**Description**: Delete a user
 
-**Parameters:**
-- `id`: User ID (required)
+**Request:**
+```http
+DELETE /api/users/clp123abc456
+Authorization: Bearer <jwt-token>
+```
 
 **Response:**
 ```json
@@ -305,496 +306,156 @@ Authorization: Bearer <jwt-token>
 }
 ```
 
-## 🔮 GraphQL API
+## 📊 Database Schema
 
-### GraphQL Schema Overview
+### Users Table
 
-#### Core Types
-```graphql
-type User {
-  id: ID!
-  email: String!
-  name: String
-  role: UserRole!
-  profile: UserProfile
-  createdAt: DateTime!
-  updatedAt: DateTime!
-}
+| Column Name | Type | Constraints | Description |
+|-------------|------|-------------|-------------|
+| id | VARCHAR(36) | PRIMARY KEY, NOT NULL | Unique identifier for the user |
+| name | VARCHAR(255) | NOT NULL | User's full name |
+| email | VARCHAR(255) | UNIQUE, NOT NULL | User's email address |
+| role | ENUM('admin', 'user', 'moderator') | NOT NULL, DEFAULT 'user' | User's role in the system |
+| created_at | TIMESTAMP | NOT NULL, DEFAULT CURRENT_TIMESTAMP | Timestamp when the user was created |
+| updated_at | TIMESTAMP | NOT NULL, DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP | Timestamp when the user was last updated |
 
-type UserProfile {
-  bio: String
-  avatar: String
-  phoneNumber: String
-  organization: String
-}
+### Indexes
 
-enum UserRole {
-  USER
-  ADMIN
-  MANAGER
-}
+1. **Primary Key**: `id` column
+2. **Unique Index**: `email` column
+3. **Index**: `role` column for faster role-based queries
 
-type AuthPayload {
-  user: User!
-  token: String!
-}
+### Relationships
 
-input CreateUserInput {
-  email: String!
-  password: String!
-  name: String
-  role: UserRole = USER
-}
+Currently, the Users table is the primary table in the system. Future tables for financial data, transactions, and reports will reference the Users table through the `user_id` foreign key.
 
-input UpdateUserInput {
-  name: String
-  role: UserRole
-  profile: UserProfileInput
-}
+## 🔄 API Request/Response Examples
 
-input UserProfileInput {
-  bio: String
-  avatar: String
-  phoneNumber: String
-  organization: String
-}
-```
-
-### GraphQL Queries
-
-#### Query: users
-**Description**: Retrieve users with pagination and filtering
-
-```graphql
-query GetUsers(
-  $first: Int = 10
-  $after: String
-  $search: String
-  $role: UserRole
-) {
-  users(
-    first: $first
-    after: $after
-    search: $search
-    role: $role
-  ) {
-    edges {
-      node {
-        id
-        email
-        name
-        role
-        createdAt
-        updatedAt
-      }
-      cursor
-    }
-    pageInfo {
-      hasNextPage
-      hasPreviousPage
-      startCursor
-      endCursor
-    }
-    totalCount
-  }
-}
-```
-
-**Variables:**
-```json
-{
-  "first": 10,
-  "search": "john",
-  "role": "USER"
-}
-```
-
-**Response:**
-```json
-{
-  "data": {
-    "users": {
-      "edges": [
-        {
-          "node": {
-            "id": "clp123abc456",
-            "email": "john@example.com",
-            "name": "John Doe",
-            "role": "USER",
-            "createdAt": "2024-03-15T10:00:00.000Z",
-            "updatedAt": "2024-03-15T10:00:00.000Z"
-          },
-          "cursor": "Y3Vyc29yMQ=="
-        }
-      ],
-      "pageInfo": {
-        "hasNextPage": true,
-        "hasPreviousPage": false,
-        "startCursor": "Y3Vyc29yMQ==",
-        "endCursor": "Y3Vyc29yMTA="
-      },
-      "totalCount": 25
-    }
-  }
-}
-```
-
-#### Query: user
-**Description**: Retrieve a specific user by ID
-
-```graphql
-query GetUser($id: ID!) {
-  user(id: $id) {
-    id
-    email
-    name
-    role
-    profile {
-      bio
-      avatar
-      phoneNumber
-      organization
-    }
-    createdAt
-    updatedAt
-  }
-}
-```
-
-**Variables:**
-```json
-{
-  "id": "clp123abc456"
-}
-```
-
-### GraphQL Mutations
-
-#### Mutation: createUser
-**Description**: Create a new user account
-
-```graphql
-mutation CreateUser($input: CreateUserInput!) {
-  createUser(input: $input) {
-    success
-    message
-    user {
-      id
-      email
-      name
-      role
-      createdAt
-    }
-    errors {
-      field
-      message
-    }
-  }
-}
-```
-
-**Variables:**
-```json
-{
-  "input": {
-    "email": "newuser@example.com",
-    "password": "securePassword123",
-    "name": "Jane Smith",
-    "role": "USER"
-  }
-}
-```
-
-**Response:**
-```json
-{
-  "data": {
-    "createUser": {
-      "success": true,
-      "message": "User created successfully",
-      "user": {
-        "id": "clp789def012",
-        "email": "newuser@example.com",
-        "name": "Jane Smith",
-        "role": "USER",
-        "createdAt": "2024-03-15T10:30:00.000Z"
-      },
-      "errors": null
-    }
-  }
-}
-```
-
-#### Mutation: updateUser
-**Description**: Update an existing user
-
-```graphql
-mutation UpdateUser($id: ID!, $input: UpdateUserInput!) {
-  updateUser(id: $id, input: $input) {
-    success
-    message
-    user {
-      id
-      email
-      name
-      role
-      updatedAt
-    }
-    errors {
-      field
-      message
-    }
-  }
-}
-```
-
-**Variables:**
-```json
-{
-  "id": "clp123abc456",
-  "input": {
-    "name": "John Updated Doe",
-    "profile": {
-      "bio": "Senior Financial Analyst",
-      "organization": "CloudFi Labs"
-    }
-  }
-}
-```
-
-#### Mutation: deleteUser
-**Description**: Delete a user account
-
-```graphql
-mutation DeleteUser($id: ID!) {
-  deleteUser(id: $id) {
-    success
-    message
-  }
-}
-```
-
-### GraphQL Subscriptions
-
-#### Subscription: userUpdated
-**Description**: Real-time updates when user data changes
-
-```graphql
-subscription UserUpdated {
-  userUpdated {
-    id
-    email
-    name
-    role
-    updatedAt
-  }
-}
-```
-
-**WebSocket Connection:** Use GraphQL subscriptions over WebSocket for real-time updates.
-
-## 📋 API Response Format
-
-### Standard Response Structure
-
-All REST API endpoints follow a consistent response format:
-
-```json
-{
-  "success": boolean,
-  "data": object | array | null,
-  "message": string | null,
-  "errors": array | null,
-  "meta": {
-    "timestamp": "ISO 8601 datetime",
-    "requestId": "unique-request-id"
-  }
-}
-```
-
-### Success Response Example
+### Successful Response Format
 ```json
 {
   "success": true,
   "data": {
-    "user": { ... }
+    // Data specific to the endpoint
   },
-  "message": "Operation completed successfully",
-  "errors": null,
-  "meta": {
-    "timestamp": "2024-03-15T10:30:00.000Z",
-    "requestId": "req-123abc456def"
+  "message": "Descriptive message about the operation"
+}
+```
+
+### Error Response Format
+```json
+{
+  "success": false,
+  "error": {
+    "code": "ERROR_CODE",
+    "message": "Descriptive error message"
   }
 }
 ```
 
-### Error Response Example
-```json
-{
-  "success": false,
-  "data": null,
-  "message": "Validation failed",
-  "errors": [
-    {
-      "field": "email",
-      "message": "Email is required"
-    },
-    {
-      "field": "password",
-      "message": "Password must be at least 8 characters"
-    }
-  ],
-  "meta": {
-    "timestamp": "2024-03-15T10:30:00.000Z",
-    "requestId": "req-456def789ghi"
+### Common HTTP Status Codes
+
+| Status Code | Description |
+|-------------|-------------|
+| 200 | OK - Successful GET, PUT, PATCH requests |
+| 201 | Created - Successful POST requests |
+| 400 | Bad Request - Invalid request data |
+| 401 | Unauthorized - Missing or invalid authentication |
+| 403 | Forbidden - Insufficient permissions |
+| 404 | Not Found - Resource not found |
+| 409 | Conflict - Resource already exists |
+| 500 | Internal Server Error - Unexpected server error |
+
+## 🛠️ API Integration
+
+### JavaScript/TypeScript Example
+```typescript
+// Get all users
+async function getUsers() {
+  try {
+    const response = await fetch('http://localhost:8000/api/users', {
+      headers: {
+        'Authorization': `Bearer ${token}`,
+        'Content-Type': 'application/json'
+      }
+    });
+    
+    const data = await response.json();
+    return data;
+  } catch (error) {
+    console.error('Error fetching users:', error);
+  }
+}
+
+// Create a new user
+async function createUser(userData) {
+  try {
+    const response = await fetch('http://localhost:8000/api/users', {
+      method: 'POST',
+      headers: {
+        'Authorization': `Bearer ${token}`,
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify(userData)
+    });
+    
+    const data = await response.json();
+    return data;
+  } catch (error) {
+    console.error('Error creating user:', error);
   }
 }
 ```
 
-## ⚠️ Error Handling
-
-### HTTP Status Codes
-
-| Status Code | Description | Usage |
-|------------|-------------|--------|
-| 200 | OK | Successful GET, PUT requests |
-| 201 | Created | Successful POST requests |
-| 204 | No Content | Successful DELETE requests |
-| 400 | Bad Request | Invalid request data |
-| 401 | Unauthorized | Missing or invalid authentication |
-| 403 | Forbidden | Insufficient permissions |
-| 404 | Not Found | Resource not found |
-| 409 | Conflict | Resource already exists |
-| 422 | Unprocessable Entity | Validation errors |
-| 429 | Too Many Requests | Rate limit exceeded |
-| 500 | Internal Server Error | Server-side errors |
-
-### Error Response Examples
-
-#### Validation Error (422)
-```json
-{
-  "success": false,
-  "data": null,
-  "message": "Validation failed",
-  "errors": [
-    {
-      "field": "email",
-      "message": "Must be a valid email address"
-    }
-  ]
-}
-```
-
-#### Authentication Error (401)
-```json
-{
-  "success": false,
-  "data": null,
-  "message": "Authentication required",
-  "errors": [
-    {
-      "code": "AUTH_REQUIRED",
-      "message": "Valid JWT token required"
-    }
-  ]
-}
-```
-
-#### Rate Limit Error (429)
-```json
-{
-  "success": false,
-  "data": null,
-  "message": "Rate limit exceeded",
-  "errors": [
-    {
-      "code": "RATE_LIMIT_EXCEEDED",
-      "message": "Too many requests. Try again in 60 seconds."
-    }
-  ]
-}
-```
-
-## 🔧 API Testing
-
-### Using cURL
-
-#### Authentication
+### cURL Examples
 ```bash
-# Login to get JWT token
-curl -X POST http://localhost:8000/api/auth/login \
-  -H "Content-Type: application/json" \
-  -d '{
-    "email": "user@example.com",
-    "password": "password123"
-  }'
-
-# Use token in subsequent requests
-curl -X GET http://localhost:8000/api/users \
+# Get all users
+curl -X GET "http://localhost:8000/api/users" \
   -H "Authorization: Bearer YOUR_JWT_TOKEN"
-```
 
-#### GraphQL Query
-```bash
-curl -X POST http://localhost:8000/graphql \
+# Create a new user
+curl -X POST "http://localhost:8000/api/users" \
   -H "Content-Type: application/json" \
   -H "Authorization: Bearer YOUR_JWT_TOKEN" \
   -d '{
-    "query": "query { users { edges { node { id name email } } } }"
+    "name": "John Doe",
+    "email": "john.doe@example.com",
+    "role": "user"
   }'
 ```
 
-### Using Postman
+## 📈 Rate Limiting
 
-1. **Import Collection**: Create a Postman collection with base URL and authentication
-2. **Environment Variables**: Set up environment variables for API URL and tokens
-3. **Pre-request Scripts**: Automatically refresh JWT tokens
-4. **Tests**: Add response validation tests
+The API implements rate limiting to prevent abuse:
 
-### GraphQL Playground
+- **Anonymous requests**: 100 requests per hour
+- **Authenticated requests**: 1000 requests per hour
 
-Access the GraphQL Playground at `http://localhost:8000/graphql` (development only) for:
-- Interactive query exploration
-- Schema documentation
-- Query validation and auto-completion
-- Subscription testing
+Exceeding these limits will result in a 429 (Too Many Requests) response.
 
-## 📊 API Rate Limiting
+## 🔧 Error Handling
 
-### Rate Limit Configuration
-- **Default Limit**: 100 requests per 15 minutes per IP
-- **Authenticated Users**: 1000 requests per 15 minutes
-- **Admin Users**: 5000 requests per 15 minutes
+All API errors follow a consistent format:
 
-### Rate Limit Headers
-```http
-X-RateLimit-Limit: 100
-X-RateLimit-Remaining: 95
-X-RateLimit-Reset: 1640995500
+```json
+{
+  "success": false,
+  "error": {
+    "code": "VALIDATION_ERROR",
+    "message": "Name and email are required",
+    "details": {
+      "field": "name",
+      "value": null,
+      "rule": "required"
+    }
+  }
+}
 ```
 
-## 🔍 API Monitoring
+## 📚 Additional Resources
 
-### Request Logging
-All API requests are logged with:
-- Request method and URL
-- User ID (if authenticated)
-- Response status code
-- Response time
-- IP address
-
-### Metrics Available
-- Request count by endpoint
-- Average response time
-- Error rate by status code
-- Authentication success/failure rates
+- [Setup Guide](./setup-guide.md) - How to run the API locally
+- [Development Guidelines](./development-guidelines.md) - Coding standards and best practices
+- [Deployment Guide](./deployment-guide.md) - How to deploy the API to production
 
 ---
-
-For more information, see:
-- [Setup Guide](./setup-guide.md) - Development environment setup
-- [Architecture Guide](./architecture.md) - Technical architecture overview
-- [Development Guidelines](./development-guidelines.md) - API development best practices
-
-*CloudFi Labs API Documentation - Powerful, flexible, and well-documented APIs.* 🌐

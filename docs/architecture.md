@@ -207,18 +207,16 @@ export const userResolvers = {
 
 ### Entity Relationships
 ```
-User ──┬── UserProfile (1:1)
-       ├── UserRoles (1:N)
-       └── FinancialRecords (1:N)
-
-Organization ──┬── Users (1:N)
-               ├── Projects (1:N)
-               └── BillingAccounts (1:N)
-
-Project ──┬── CostRecords (1:N)
-          ├── Budgets (1:N)
-          └── Reports (1:N)
+USER ||--o{ USER_PROFILE : has
+USER ||--o{ ACCOUNT : owns
+USER ||--o{ CATEGORY : creates
+USER ||--o{ TRANSACTION : performs
+USER ||--o{ REPORT : generates
+ACCOUNT ||--o{ TRANSACTION : contains
+CATEGORY ||--o{ TRANSACTION : categorizes
 ```
+
+For detailed database schema information, including table structures, relationships, and indexes, see the [Database Schema Documentation](./database-schema.md).
 
 ### Data Access Patterns
 - **Repository Pattern**: Abstracted data access through Prisma

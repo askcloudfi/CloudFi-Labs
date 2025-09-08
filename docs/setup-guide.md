@@ -131,6 +131,10 @@ SHOW DATABASES;
 EXIT;
 ```
 
+### Database Schema
+
+For detailed information about the database schema, including table structures, relationships, and indexes, see the [Database Schema Documentation](./database-schema.md).
+
 ### Database Connection Testing
 
 Test your database connection:
