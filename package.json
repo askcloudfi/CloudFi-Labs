@@ -1,0 +1,43 @@
+{
+  "name": "cloudfi-labs",
+  "version": "1.0.0",
+  "description": "CloudFi Labs - A comprehensive cloud finance platform",
+  "private": true,
+  "workspaces": [
+    "packages/*",
+    "apps/*"
+  ],
+  "scripts": {
+    "dev": "concurrently \"npm run dev --workspace=frontend\" \"npm run dev --workspace=backend\"",
+    "dev:frontend": "npm run dev --workspace=frontend",
+    "dev:backend": "npm run dev --workspace=backend",
+    "build": "npm run build --workspace=frontend && npm run build --workspace=backend",
+    "build:frontend": "npm run build --workspace=frontend",
+    "build:backend": "npm run build --workspace=backend",
+    "start": "concurrently \"npm run start --workspace=frontend\" \"npm run start --workspace=backend\"",
+    "clean": "npm run clean --workspaces --if-present",
+    "install:all": "npm install",
+    "type-check": "npm run type-check --workspaces --if-present",
+    "lint": "npm run lint --workspaces --if-present",
+    "test": "npm run test --workspaces --if-present"
+  },
+  "devDependencies": {
+    "concurrently": "^8.2.2",
+    "typescript": "^5.2.2"
+  },
+  "engines": {
+    "node": ">=18.0.0",
+    "npm": ">=9.0.0"
+  },
+  "keywords": [
+    "cloudfi",
+    "finance",
+    "cloud",
+    "typescript",
+    "nextjs",
+    "nodejs",
+    "monorepo"
+  ],
+  "author": "CloudFi Labs",
+  "license": "MIT"
+}
