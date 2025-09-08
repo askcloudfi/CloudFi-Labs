@@ -551,6 +551,12 @@ The following user-facing pages have been added to the application:
 
 #### Admin Pages
 - `/admin/profile` - Administrator profile management
+- `/admin/projects` - Client project management dashboard
+- `/admin/projects/[id]` - Detailed view of specific client projects
+
+#### User Project Pages
+- `/projects` - User project management dashboard
+- `/projects/[id]` - Detailed view of specific projects
 
 #### Test Pages
 - `/test` - API connectivity testing page

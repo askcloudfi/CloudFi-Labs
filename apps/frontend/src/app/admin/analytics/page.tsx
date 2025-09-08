@@ -14,7 +14,11 @@ import {
   Activity,
   Clock,
   ArrowUpRight,
-  ArrowDownRight
+  ArrowDownRight,
+  FileText,
+  CreditCard,
+  Globe,
+  Database
 } from 'lucide-react'
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
 
@@ -52,8 +56,48 @@ const recentActivity = [
   { id: 4, user: 'Jordan Lee', action: 'Deleted report', time: '3 hours ago' },
 ]
 
+// New enhanced data
+const enhancedMetrics = [
+  {
+    title: "Cloud Spend",
+    value: "$42,680",
+    change: "+15.2%",
+    icon: CreditCard,
+    color: "bg-blue-500",
+  },
+  {
+    title: "Infrastructure Cost",
+    value: "$18,420",
+    change: "+8.7%",
+    icon: Database,
+    color: "bg-green-500",
+  },
+  {
+    title: "Network Usage",
+    value: "1.2TB",
+    change: "+22.4%",
+    icon: Globe,
+    color: "bg-purple-500",
+  },
+  {
+    title: "Active Reports",
+    value: "142",
+    change: "+5.3%",
+    icon: FileText,
+    color: "bg-orange-500",
+  },
+]
+
+const cloudSpendData = [
+  { provider: 'AWS', spend: 45, color: 'bg-orange-500' },
+  { provider: 'Google Cloud', spend: 25, color: 'bg-blue-500' },
+  { provider: 'Azure', spend: 20, color: 'bg-blue-400' },
+  { provider: 'Other', spend: 10, color: 'bg-gray-500' },
+]
+
 export default function AnalyticsPage() {
   const [dateRange, setDateRange] = useState('')
+  const [timePeriod, setTimePeriod] = useState('monthly')
 
   return (
     <div className="mx-auto max-w-7xl px-4 sm:px-6 md:px-8">
@@ -66,6 +110,44 @@ export default function AnalyticsPage() {
           </p>
         </div>
         <div className="mt-4 flex flex-wrap gap-2 md:ml-4 md:mt-0">
+          <div className="flex rounded-md shadow-sm">
+            <button
+              type="button"
+              className={`relative inline-flex items-center rounded-l-md px-3 py-2 text-sm font-semibold ring-1 ring-inset ring-gray-300 hover:bg-gray-50 focus:z-10 ${
+                timePeriod === 'daily' ? 'bg-primary-600 text-white' : 'bg-white text-gray-900'
+              }`}
+              onClick={() => setTimePeriod('daily')}
+            >
+              Daily
+            </button>
+            <button
+              type="button"
+              className={`relative -ml-px inline-flex items-center px-3 py-2 text-sm font-semibold ring-1 ring-inset ring-gray-300 hover:bg-gray-50 focus:z-10 ${
+                timePeriod === 'weekly' ? 'bg-primary-600 text-white' : 'bg-white text-gray-900'
+              }`}
+              onClick={() => setTimePeriod('weekly')}
+            >
+              Weekly
+            </button>
+            <button
+              type="button"
+              className={`relative -ml-px inline-flex items-center px-3 py-2 text-sm font-semibold ring-1 ring-inset ring-gray-300 hover:bg-gray-50 focus:z-10 ${
+                timePeriod === 'monthly' ? 'bg-primary-600 text-white' : 'bg-white text-gray-900'
+              }`}
+              onClick={() => setTimePeriod('monthly')}
+            >
+              Monthly
+            </button>
+            <button
+              type="button"
+              className={`relative -ml-px inline-flex items-center rounded-r-md px-3 py-2 text-sm font-semibold ring-1 ring-inset ring-gray-300 hover:bg-gray-50 focus:z-10 ${
+                timePeriod === 'yearly' ? 'bg-primary-600 text-white' : 'bg-white text-gray-900'
+              }`}
+              onClick={() => setTimePeriod('yearly')}
+            >
+              Yearly
+            </button>
+          </div>
           <button
             type="button"
             className="inline-flex items-center rounded-md bg-white px-3 py-2 text-sm font-semibold text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 hover:bg-gray-50"
@@ -99,60 +181,26 @@ export default function AnalyticsPage() {
         </div>
       </div>
 
-      {/* Stats */}
+      {/* Enhanced Stats */}
       <div className="mt-8 grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-4">
-        <Card>
-          <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-            <CardTitle className="text-sm font-medium">Total Revenue</CardTitle>
-            <DollarSign className="h-4 w-4 text-muted-foreground" />
-          </CardHeader>
-          <CardContent>
-            <div className="text-2xl font-bold">$24,580</div>
-            <p className="flex items-center text-xs text-muted-foreground mt-1">
-              <ArrowUpRight className="h-3 w-3 text-green-500 mr-1" />
-              +12% from last month
-            </p>
-          </CardContent>
-        </Card>
-        <Card>
-          <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-            <CardTitle className="text-sm font-medium">Active Users</CardTitle>
-            <Users className="h-4 w-4 text-muted-foreground" />
-          </CardHeader>
-          <CardContent>
-            <div className="text-2xl font-bold">1,248</div>
-            <p className="flex items-center text-xs text-muted-foreground mt-1">
-              <ArrowUpRight className="h-3 w-3 text-green-500 mr-1" />
-              +18% from last month
-            </p>
-          </CardContent>
-        </Card>
-        <Card>
-          <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-            <CardTitle className="text-sm font-medium">Conversion Rate</CardTitle>
-            <PieChart className="h-4 w-4 text-muted-foreground" />
-          </CardHeader>
-          <CardContent>
-            <div className="text-2xl font-bold">24.5%</div>
-            <p className="flex items-center text-xs text-muted-foreground mt-1">
-              <ArrowUpRight className="h-3 w-3 text-green-500 mr-1" />
-              +3.2% from last month
-            </p>
-          </CardContent>
-        </Card>
-        <Card>
-          <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-            <CardTitle className="text-sm font-medium">Avg. Session</CardTitle>
-            <Clock className="h-4 w-4 text-muted-foreground" />
-          </CardHeader>
-          <CardContent>
-            <div className="text-2xl font-bold">5m 24s</div>
-            <p className="flex items-center text-xs text-muted-foreground mt-1">
-              <ArrowDownRight className="h-3 w-3 text-red-500 mr-1" />
-              -1.2m from last month
-            </p>
-          </CardContent>
-        </Card>
+        {enhancedMetrics.map((metric) => {
+          const Icon = metric.icon
+          return (
+            <Card key={metric.title}>
+              <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
+                <CardTitle className="text-sm font-medium">{metric.title}</CardTitle>
+                <Icon className="h-4 w-4 text-muted-foreground" />
+              </CardHeader>
+              <CardContent>
+                <div className="text-2xl font-bold">{metric.value}</div>
+                <p className="flex items-center text-xs text-muted-foreground mt-1">
+                  <ArrowUpRight className="h-3 w-3 text-green-500 mr-1" />
+                  {metric.change} from last period
+                </p>
+              </CardContent>
+            </Card>
+          )
+        })}
       </div>
 
       {/* Charts and Activity */}
@@ -160,16 +208,45 @@ export default function AnalyticsPage() {
         {/* Revenue Chart */}
         <Card className="lg:col-span-2">
           <CardHeader>
-            <CardTitle>Revenue Overview</CardTitle>
+            <CardTitle>Cloud Spend Overview</CardTitle>
           </CardHeader>
           <CardContent>
             <div className="h-80">
-              {/* Chart placeholder - in a real app, you would use a charting library like Recharts */}
+              {/* Enhanced chart visualization */}
               <div className="flex h-full items-center justify-center rounded-lg border-2 border-dashed border-gray-300">
-                <div className="text-center">
-                  <BarChart3 className="mx-auto h-12 w-12 text-gray-400" />
-                  <p className="mt-2 text-sm text-gray-500">Revenue chart visualization</p>
-                  <p className="mt-1 text-xs text-gray-400">Using Recharts or similar library</p>
+                <div className="w-full px-4">
+                  <div className="flex items-center justify-between mb-6">
+                    <h3 className="text-lg font-semibold">Monthly Cloud Spend</h3>
+                    <div className="flex space-x-2">
+                      <button className="px-3 py-1 text-sm bg-primary-100 text-primary-800 rounded-full">Month</button>
+                      <button className="px-3 py-1 text-sm text-gray-500 hover:bg-gray-100 rounded-full">Quarter</button>
+                      <button className="px-3 py-1 text-sm text-gray-500 hover:bg-gray-100 rounded-full">Year</button>
+                    </div>
+                  </div>
+                  
+                  {/* Bar chart visualization */}
+                  <div className="flex items-end justify-between h-48 mt-8">
+                    {['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep'].map((month, index) => (
+                      <div key={month} className="flex flex-col items-center w-8">
+                        <div className="text-xs text-gray-500 mb-2">{month}</div>
+                        <div 
+                          className="w-6 bg-primary-500 rounded-t hover:bg-primary-600 transition-all duration-300"
+                          style={{ height: `${20 + index * 8}%` }}
+                        ></div>
+                      </div>
+                    ))}
+                  </div>
+                  
+                  {/* Cloud spend breakdown legend */}
+                  <div className="mt-8 grid grid-cols-2 md:grid-cols-4 gap-3">
+                    {cloudSpendData.map((item) => (
+                      <div key={item.provider} className="flex items-center">
+                        <div className={`w-3 h-3 rounded-full ${item.color} mr-2`}></div>
+                        <span className="text-sm text-gray-600">{item.provider}</span>
+                        <span className="text-sm font-medium ml-1">{item.spend}%</span>
+                      </div>
+                    ))}
+                  </div>
                 </div>
               </div>
             </div>

@@ -248,6 +248,29 @@ This document provides detailed information about all user-facing pages in the C
   - Notification preferences
   - Responsive form layout
 
+### Project Management (`/admin/projects`)
+- **Location**: `apps/frontend/src/app/admin/projects/page.tsx`
+- **Purpose**: Client project management dashboard
+- **Key Features**:
+  - Project listings with filtering and search
+  - Project status tracking
+  - Progress visualization
+  - Budget monitoring
+  - Client information
+  - Responsive table layout
+
+### Admin Project Detail (`/admin/projects/[id]`)
+- **Location**: `apps/frontend/src/app/admin/projects/[id]/page.tsx`
+- **Purpose**: Detailed view of a specific client project
+- **Key Features**:
+  - Project overview with key metrics
+  - Team member listings
+  - Milestone tracking
+  - Activity timeline
+  - Progress visualization
+  - Billing information
+  - Responsive tabbed interface
+
 ## 🎨 Design Principles
 
 All user-facing pages follow these design principles:

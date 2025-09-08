@@ -12,15 +12,21 @@ import {
   Bell, 
   Menu, 
   X,
-  LogOut
+  LogOut,
+  CreditCard,
+  Shield,
+  Folder
 } from 'lucide-react'
 import AdminAuthCheck from '@/components/AdminAuthCheck'
 
 const navigation = [
   { name: 'Dashboard', href: '/admin', icon: LayoutDashboard },
   { name: 'Users', href: '/admin/users', icon: Users },
+  { name: 'Projects', href: '/admin/projects', icon: Folder },
   { name: 'Reports', href: '/admin/reports', icon: FileText },
   { name: 'Analytics', href: '/admin/analytics', icon: BarChart3 },
+  { name: 'Billing', href: '/admin/billing', icon: CreditCard },
+  { name: 'Audit Logs', href: '/admin/audit', icon: Shield },
   { name: 'Settings', href: '/admin/settings', icon: Settings },
 ]
 

@@ -47,7 +47,15 @@ const expectedPages = [
   'test/page.tsx',
   
   // Profile page
-  'profile/page.tsx'
+  'profile/page.tsx',
+  
+  // User project management pages
+  'projects/page.tsx',
+  'projects/[id]/page.tsx',
+  
+  // Admin project management pages
+  'admin/projects/page.tsx',
+  'admin/projects/[id]/page.tsx'
 ];
 
 // Function to check if a file exists
