@@ -143,6 +143,82 @@ mysql -u cloudfi_user -p cloudfi_dev
 docker exec -it cloudfi-mysql mysql -u cloudfi_user -p cloudfi_dev
 ```
 
+## 🐳 Docker Setup
+
+CloudFi Labs provides full Docker support for both development and production environments.
+
+### Docker Compose Files
+
+The project includes two Docker Compose configurations:
+
+1. **docker-compose.yml** - Production configuration
+2. **docker-compose.dev.yml** - Development configuration with hot-reloading
+
+### Development with Docker
+
+To start the development environment with Docker:
+
+```bash
+# Start all services in development mode
+docker-compose -f docker-compose.dev.yml up -d
+
+# View logs
+docker-compose -f docker-compose.dev.yml logs -f
+
+# Stop all services
+docker-compose -f docker-compose.dev.yml down
+```
+
+### Production Deployment with Docker
+
+To deploy the application in production mode:
+
+```bash
+# Build and start all services
+docker-compose up -d --build
+
+# Scale services (optional)
+docker-compose up -d --scale frontend=3
+
+# View running containers
+docker-compose ps
+```
+
+### Docker Commands
+
+Common Docker commands for managing the application:
+
+```bash
+# Build images
+docker-compose build
+
+# Rebuild specific service
+docker-compose build frontend
+
+# Execute commands in running container
+docker-compose exec backend sh
+
+# View container logs
+docker-compose logs frontend
+```
+
+### Docker Environment Variables
+
+The Docker setup uses environment variables defined in the Docker Compose files. You can customize these by creating a `.env` file in the root directory:
+
+```env
+# Database Configuration
+MYSQL_ROOT_PASSWORD=rootpassword
+MYSQL_DATABASE=cloudfi
+MYSQL_USER=cloudfi_user
+MYSQL_PASSWORD=cloudfi_password
+
+# Application Ports
+FRONTEND_PORT=3000
+BACKEND_PORT=8000
+MYSQL_PORT=3306
+```
+
 ## 🚀 Project Setup
 
 ### 1. Clone Repository

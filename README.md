@@ -1,5 +1,12 @@
 # CloudFi-Labs
 
+[![Node.js Version](https://img.shields.io/badge/Node.js-18.0.0%2B-brightgreen)](https://nodejs.org/)
+[![License](https://img.shields.io/badge/license-MIT-blue)](LICENSE)
+[![Docker](https://img.shields.io/badge/docker-supported-blue)](https://www.docker.com/)
+[![TypeScript](https://img.shields.io/badge/TypeScript-5.0%2B-blue)](https://www.typescriptlang.org/)
+[![Next.js](https://img.shields.io/badge/Next.js-14.0.4-black)](https://nextjs.org/)
+[![Express](https://img.shields.io/badge/Express-4.18.2-black)](https://expressjs.com/)
+
 > A comprehensive cloud finance platform built with modern technologies
 
 ## 📋 Quick Navigation
@@ -58,6 +65,7 @@ CloudFi Labs is built with a modern, enterprise-grade technology stack:
 - **Backend**: Node.js, Express.js, TypeScript, GraphQL
 - **Database**: MySQL 8.0+ with Prisma ORM
 - **Development**: Docker, ESLint, Prettier, Jest, Cypress
+- **Deployment**: Docker Compose, CI/CD pipelines
 
 > 📖 **For detailed technology information, see [Technology Stack Guide](./docs/technology-stack.md)**
 
@@ -68,12 +76,30 @@ Before you begin, ensure you have:
 - **Node.js**: 18.0.0 or higher
 - **MySQL**: 8.0+ (or Docker)
 - **Git**: Latest version
+- **Docker**: Latest version (for containerized deployment)
 
 > 📖 **For complete setup requirements, see [Setup Guide](./docs/setup-guide.md)**
+
 ## 🚀 Quick Start
 
 Get up and running in minutes:
 
+### Option 1: Using Docker (Recommended)
+```bash
+# 1. Clone the repository
+git clone <repository-url>
+cd cloudfi
+
+# 2. Start all services with Docker
+docker-compose up -d
+
+# 3. Access your application
+# Frontend: http://localhost:3000
+# Backend API: http://localhost:8000
+# GraphQL Playground: http://localhost:8000/graphql
+```
+
+### Option 2: Manual Setup
 ```bash
 # 1. Clone and install
 git clone <repository-url>
@@ -108,10 +134,21 @@ npm run dev
 **Essential Commands:**
 ```bash
 npm run dev              # Start both frontend and backend
+npm run dev:frontend     # Start frontend only
+npm run dev:backend      # Start backend only
 npm run db:studio        # Open database admin interface
 npm test                 # Run all tests
 npm run build            # Build for production
 npm run lint             # Check code quality
+```
+
+**Docker Commands:**
+```bash
+docker-compose up -d              # Start all services
+docker-compose -f docker-compose.dev.yml up -d  # Start dev services
+docker-compose down               # Stop all services
+docker-compose build              # Build all images
+docker-compose logs -f            # View live logs
 ```
 
 > 📖 **For complete script reference, see [Setup Guide](./docs/setup-guide.md#available-scripts)**
@@ -162,6 +199,54 @@ npm run dev
 5. **Open a Pull Request**
 
 > 📖 **For detailed contribution guidelines, see [Development Guidelines](./docs/development-guidelines.md#contributing-guidelines)**
+
+## 🐳 Docker Support
+
+CloudFi Labs provides full Docker support for easy deployment and development.
+
+### Docker Compose Services
+- **Frontend**: Next.js application on port 3000
+- **Backend**: Express API on port 8000
+- **Database**: MySQL 8.0 on port 3306
+
+### Development with Docker
+```bash
+# Start all services in development mode
+docker-compose -f docker-compose.dev.yml up -d
+
+# View logs
+docker-compose logs -f
+
+# Stop all services
+docker-compose down
+```
+
+### Production Deployment with Docker
+```bash
+# Build and start all services
+docker-compose up -d --build
+
+# Scale services (optional)
+docker-compose up -d --scale frontend=3
+
+# View running containers
+docker-compose ps
+```
+
+### Docker Commands
+```bash
+# Build images
+docker-compose build
+
+# Rebuild specific service
+docker-compose build frontend
+
+# Execute commands in running container
+docker-compose exec backend sh
+
+# View container logs
+docker-compose logs frontend
+```
 
 ## 🚀 Deployment
 

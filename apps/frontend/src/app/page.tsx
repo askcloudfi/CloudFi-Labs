@@ -115,8 +115,10 @@ export default function HomePage() {
       </section>
 
       {/* Footer */}
-      <footer className="mt-12 text-center text-gray-500 text-sm">
-        <p>&copy; 2025 CloudFi Labs. Built with Next.js, Node.js, and TypeScript.</p>
+      <footer className="bg-gray-900 text-white py-8">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+          <p>&copy; 2025 CloudFi Labs. Built with Next.js, Node.js, and TypeScript.</p>
+        </div>
       </footer>
     </div>
   )

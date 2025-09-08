@@ -53,6 +53,60 @@ GRAPHQL_INTROSPECTION=true
 GRAPHQL_PLAYGROUND=true
 ```
 
+### Docker Development Environment
+**Purpose**: Containerized development environment
+
+**Configuration:**
+- **URL**: `http://localhost:3000` (Frontend), `http://localhost:8000` (Backend)
+- **Database**: Docker container with MySQL
+- **Features**: Hot reload, debug mode, consistent environment
+- **Data**: Sample/seed data for development
+
+**Docker Compose Configuration:**
+```yaml
+version: '3.8'
+services:
+  frontend:
+    build:
+      context: ./apps/frontend
+      dockerfile: Dockerfile.dev
+    ports:
+      - "3000:3000"
+    volumes:
+      - ./apps/frontend:/app
+      - /app/node_modules
+    environment:
+      - NEXT_PUBLIC_API_URL=http://backend:8000
+    depends_on:
+      - backend
+
+  backend:
+    build:
+      context: ./apps/backend
+      dockerfile: Dockerfile.dev
+    ports:
+      - "8000:8000"
+    volumes:
+      - ./apps/backend:/app
+      - /app/node_modules
+    environment:
+      - NODE_ENV=development
+      - DATABASE_URL=mysql://cloudfi_user:cloudfi_password@mysql:3306/cloudfi_dev
+
+  mysql:
+    image: mysql:8.0
+    environment:
+      MYSQL_ROOT_PASSWORD: rootpassword
+      MYSQL_DATABASE: cloudfi_dev
+      MYSQL_USER: cloudfi_user
+      MYSQL_PASSWORD: cloudfi_password
+    volumes:
+      - mysql_data:/var/lib/mysql
+
+volumes:
+  mysql_data:
+```
+
 ### Testing Environment
 **Purpose**: Automated testing and CI/CD validation
 
@@ -269,6 +323,91 @@ jobs:
       - name: Run smoke tests
       - name: Update monitoring
       - name: Notify stakeholders
+```
+
+### Docker Image Building
+
+The CI/CD pipeline builds Docker images for each service:
+
+```dockerfile
+# Frontend Dockerfile
+FROM node:18-alpine
+WORKDIR /app
+COPY package*.json ./
+RUN npm ci --only=production
+COPY . .
+RUN npm run build
+EXPOSE 3000
+CMD ["npm", "start"]
+```
+
+```dockerfile
+# Backend Dockerfile
+FROM node:18-alpine
+WORKDIR /app
+COPY package*.json ./
+RUN npm ci --only=production
+COPY . .
+RUN npm run build
+EXPOSE 8000
+CMD ["npm", "start"]
+```
+
+### Docker Registry Deployment
+
+Images are pushed to a container registry (Docker Hub, AWS ECR, etc.):
+
+```bash
+# Tag and push images
+docker build -t cloudfi/frontend:latest ./apps/frontend
+docker build -t cloudfi/backend:latest ./apps/backend
+docker push cloudfi/frontend:latest
+docker push cloudfi/backend:latest
+```
+
+## 🐳 Docker Deployment
+
+### Production Deployment with Docker Compose
+
+For production deployments, use the provided docker-compose.yml:
+
+```bash
+# Deploy to production
+docker-compose up -d
+
+# Scale services
+docker-compose up -d --scale frontend=3 --scale backend=2
+
+# Update services
+docker-compose pull
+docker-compose up -d
+```
+
+### Kubernetes Deployment (Alternative)
+
+For larger deployments, Kubernetes manifests are available:
+
+```yaml
+# k8s/frontend-deployment.yaml
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: cloudfi-frontend
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: cloudfi-frontend
+  template:
+    metadata:
+      labels:
+        app: cloudfi-frontend
+    spec:
+      containers:
+      - name: frontend
+        image: cloudfi/frontend:latest
+        ports:
+        - containerPort: 3000
 ```
 
 ### Pipeline Stages

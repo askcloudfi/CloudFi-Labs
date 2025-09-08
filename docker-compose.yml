@@ -1,0 +1,53 @@
+version: '3.8'
+
+services:
+  # Frontend service
+  frontend:
+    build:
+      context: ./apps/frontend
+      dockerfile: Dockerfile
+    ports:
+      - "3000:3000"
+    environment:
+      - NEXT_PUBLIC_API_URL=http://backend:8000
+    depends_on:
+      - backend
+    networks:
+      - cloudfi-network
+
+  # Backend service
+  backend:
+    build:
+      context: ./apps/backend
+      dockerfile: Dockerfile
+    ports:
+      - "8000:8000"
+    environment:
+      - NODE_ENV=production
+      - PORT=8000
+    networks:
+      - cloudfi-network
+
+  # MySQL database service
+  mysql:
+    image: mysql:8.0
+    ports:
+      - "3306:3306"
+    environment:
+      MYSQL_ROOT_PASSWORD: rootpassword
+      MYSQL_DATABASE: cloudfi
+      MYSQL_USER: cloudfi_user
+      MYSQL_PASSWORD: cloudfi_password
+    volumes:
+      - mysql_data:/var/lib/mysql
+    networks:
+      - cloudfi-network
+
+# Define networks
+networks:
+  cloudfi-network:
+    driver: bridge
+
+# Define volumes
+volumes:
+  mysql_data:

@@ -402,6 +402,8 @@ CloudFi Labs is built with a modern, enterprise-grade technology stack designed 
 - **VS Code**: Recommended IDE with extensions
 - **Node Version Manager (nvm)**: Node.js version management
 - **npm workspaces**: Monorepo dependency management
+- **Docker**: Containerization for consistent environments
+- **Docker Compose**: Multi-container application orchestration
 
 ### Monitoring & Observability (Future)
 - **Prometheus**: Metrics collection and monitoring
