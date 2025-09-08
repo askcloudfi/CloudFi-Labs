@@ -545,6 +545,9 @@ The following user-facing pages have been added to the application:
 - `/resources/case-studies` - Customer success stories and testimonials
 - `/resources/contact` - Resource-specific contact information
 - `/resources/partners` - Partner program information
+- `/resources/privacy-policy` - Privacy policy and data protection information
+- `/resources/terms-of-service` - Terms of service and user agreement
+- `/resources/cookie-policy` - Cookie usage and management information
 
 #### Pricing Page
 - `/pricing` - Subscription plans and pricing information

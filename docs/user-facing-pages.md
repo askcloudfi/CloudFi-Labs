@@ -174,6 +174,37 @@ This document provides detailed information about all user-facing pages in the C
   - Call-to-action buttons
   - Responsive design
 
+### Privacy Policy (`/resources/privacy-policy`)
+- **Location**: `apps/frontend/src/app/resources/privacy-policy/page.tsx`
+- **Purpose**: Privacy policy and data protection information
+- **Key Features**:
+  - Comprehensive privacy policy details
+  - Data collection and usage information
+  - User rights and controls
+  - Contact information for privacy concerns
+  - Responsive layout
+
+### Terms of Service (`/resources/terms-of-service`)
+- **Location**: `apps/frontend/src/app/resources/terms-of-service/page.tsx`
+- **Purpose**: Terms of service and user agreement
+- **Key Features**:
+  - Service usage terms
+  - Account registration requirements
+  - Intellectual property information
+  - Payment and subscription details
+  - Limitation of liability
+  - Responsive layout
+
+### Cookie Policy (`/resources/cookie-policy`)
+- **Location**: `apps/frontend/src/app/resources/cookie-policy/page.tsx`
+- **Purpose**: Cookie usage and management information
+- **Key Features**:
+  - Types of cookies used
+  - Purpose of each cookie
+  - Cookie management instructions
+  - Cookie table with details
+  - Responsive layout
+
 ## 👤 User Profile Pages
 
 ### Profile Management (`/profile`)
@@ -292,6 +323,32 @@ All user-facing pages follow these design principles:
 - Code splitting for faster loading
 - Efficient component rendering
 - Minimal third-party dependencies
+
+## 🦶 Footer Component
+
+### Overview
+All user-facing pages include a consistent footer component that provides essential navigation and information. The footer implements a responsive 2-column layout for improved readability and usability.
+
+### Key Features
+- **Company Information**: Logo, description, and contact details
+- **Social Media Links**: Twitter, LinkedIn, Facebook, and Instagram with proper security attributes
+- **Navigation Links**: Organized into Products, Solutions, Resources, Company, and Legal sections
+- **Newsletter Signup**: Email subscription form
+- **Copyright Notice**: Current year copyright with technology stack attribution
+
+### Responsive Behavior
+- **Mobile**: Stacked single column layout with clear section headings
+- **Tablet**: 2-column layout with balanced content distribution
+- **Desktop**: 2-column layout with optimized spacing
+
+### Technical Implementation
+- Located at `apps/frontend/src/components/Footer.tsx`
+- Built with Tailwind CSS for responsive design
+- Uses Lucide React icons for social media and contact icons
+- Implements proper accessibility attributes
+- Follows security best practices for external links
+
+For detailed information about the footer design and implementation, see the [Footer Design Documentation](./footer-design.md).
 
 ## 🛠️ Technical Implementation
 

@@ -145,7 +145,8 @@ src/
 │   ├── ui/               # Base UI components (Button, Input, etc.)
 │   ├── forms/            # Form components
 │   ├── charts/           # Data visualization components
-│   └── layout/           # Layout components (Header, Sidebar)
+│   ├── layout/           # Layout components (Header, Sidebar, Footer)
+│   └── sections/         # Page section components (Hero, Features, etc.)
 ├── hooks/                # Custom React hooks
 ├── lib/                  # Utility libraries
 │   ├── apollo.ts         # Apollo Client configuration

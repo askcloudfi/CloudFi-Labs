@@ -14,146 +14,154 @@ import {
 export default function Footer() {
   const navigation = {
     products: [
-      { name: 'Cloud Cost Management', href: '#' },
-      { name: 'Financial Analytics', href: '#' },
-      { name: 'Compliance Dashboard', href: '#' },
-      { name: 'Team Collaboration', href: '#' },
+      { name: 'Cloud Cost Management', href: '/products/cost-management' },
+      { name: 'Financial Analytics', href: '/admin/analytics' },
+      { name: 'Compliance Dashboard', href: '/solutions/compliance' },
+      { name: 'Team Collaboration', href: '/admin/projects' },
     ],
     solutions: [
-      { name: 'Enterprise Finance', href: '#' },
-      { name: 'Startup Growth', href: '#' },
-      { name: 'Multi-Cloud Management', href: '#' },
-      { name: 'Regulatory Compliance', href: '#' },
+      { name: 'Enterprise Finance', href: '/solutions/enterprise' },
+      { name: 'Startup Growth', href: '/solutions/startup' },
+      { name: 'Multi-Cloud Management', href: '/solutions/multi-cloud' },
+      { name: 'Regulatory Compliance', href: '/solutions/compliance' },
     ],
     resources: [
-      { name: 'Documentation', href: '#' },
-      { name: 'Case Studies', href: '#' },
-      { name: 'Blog', href: '#' },
-      { name: 'API Reference', href: '#' },
+      { name: 'Documentation', href: '/resources/documentation' },
+      { name: 'Case Studies', href: '/resources/case-studies' },
+      { name: 'Blog', href: '/resources/blog' },
+      { name: 'API Reference', href: '/resources/api' },
     ],
     company: [
-      { name: 'About Us', href: '#' },
-      { name: 'Careers', href: '#' },
-      { name: 'Contact', href: '#' },
-      { name: 'Partners', href: '#' },
+      { name: 'About Us', href: '/company/about' },
+      { name: 'Careers', href: '/company' },
+      { name: 'Contact', href: '/company/contact' },
+      { name: 'Partners', href: '/company/partners' },
     ],
     legal: [
-      { name: 'Privacy Policy', href: '#' },
-      { name: 'Terms of Service', href: '#' },
-      { name: 'Cookie Policy', href: '#' },
-      { name: 'Compliance', href: '#' },
+      { name: 'Privacy Policy', href: '/resources/privacy-policy' },
+      { name: 'Terms of Service', href: '/resources/terms-of-service' },
+      { name: 'Cookie Policy', href: '/resources/cookie-policy' },
+      { name: 'Compliance', href: '/solutions/compliance' },
     ]
   }
 
   return (
     <footer className="bg-gray-900 text-white">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-16 pb-8">
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-8">
-          {/* Company Info */}
-          <div className="lg:col-span-1">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+          {/* Company Info and Social Media */}
+          <div className="md:col-span-1">
             <div className="flex items-center space-x-2 mb-4">
               <CloudIcon className="w-8 h-8 text-primary-400" />
               <span className="text-xl font-bold">CloudFi Labs</span>
             </div>
-            <p className="text-gray-400 mb-4">
+            <p className="text-gray-400 mb-6">
               Comprehensive cloud finance platform for modern businesses.
             </p>
-            <div className="flex space-x-4">
-              <a href="#" className="text-gray-400 hover:text-white">
-                <TwitterIcon className="w-5 h-5" />
-              </a>
-              <a href="#" className="text-gray-400 hover:text-white">
-                <LinkedinIcon className="w-5 h-5" />
-              </a>
-              <a href="#" className="text-gray-400 hover:text-white">
-                <FacebookIcon className="w-5 h-5" />
-              </a>
-              <a href="#" className="text-gray-400 hover:text-white">
-                <InstagramIcon className="w-5 h-5" />
-              </a>
+            
+            {/* Social Media Links */}
+            <div className="mb-8">
+              <h3 className="text-lg font-semibold mb-4">Connect With Us</h3>
+              <div className="flex space-x-4">
+                <a href="https://twitter.com" target="_blank" rel="noopener noreferrer" className="text-gray-400 hover:text-white">
+                  <TwitterIcon className="w-5 h-5" />
+                </a>
+                <a href="https://linkedin.com" target="_blank" rel="noopener noreferrer" className="text-gray-400 hover:text-white">
+                  <LinkedinIcon className="w-5 h-5" />
+                </a>
+                <a href="https://facebook.com" target="_blank" rel="noopener noreferrer" className="text-gray-400 hover:text-white">
+                  <FacebookIcon className="w-5 h-5" />
+                </a>
+                <a href="https://instagram.com" target="_blank" rel="noopener noreferrer" className="text-gray-400 hover:text-white">
+                  <InstagramIcon className="w-5 h-5" />
+                </a>
+              </div>
+            </div>
+            
+            {/* Contact Information */}
+            <div>
+              <h3 className="text-lg font-semibold mb-4">Contact Us</h3>
+              <ul className="space-y-3">
+                <li className="flex items-start">
+                  <MapPinIcon className="w-5 h-5 text-gray-400 mr-3 mt-0.5 flex-shrink-0" />
+                  <span className="text-gray-400">123 Cloud Street, San Francisco, CA 94105</span>
+                </li>
+                <li className="flex items-center">
+                  <PhoneIcon className="w-5 h-5 text-gray-400 mr-3 flex-shrink-0" />
+                  <span className="text-gray-400">+1 (555) 123-4567</span>
+                </li>
+                <li className="flex items-center">
+                  <MailIcon className="w-5 h-5 text-gray-400 mr-3 flex-shrink-0" />
+                  <span className="text-gray-400">support@cloudfi-labs.com</span>
+                </li>
+              </ul>
             </div>
           </div>
           
-          {/* Products */}
-          <div>
-            <h3 className="text-lg font-semibold mb-4">Products</h3>
-            <ul className="space-y-2">
-              {navigation.products.map((item) => (
-                <li key={item.name}>
-                  <a href={item.href} className="text-gray-400 hover:text-white transition-colors">
-                    {item.name}
-                  </a>
-                </li>
-              ))}
-            </ul>
-          </div>
-          
-          {/* Solutions */}
-          <div>
-            <h3 className="text-lg font-semibold mb-4">Solutions</h3>
-            <ul className="space-y-2">
-              {navigation.solutions.map((item) => (
-                <li key={item.name}>
-                  <a href={item.href} className="text-gray-400 hover:text-white transition-colors">
-                    {item.name}
-                  </a>
-                </li>
-              ))}
-            </ul>
-          </div>
-          
-          {/* Resources & Company */}
-          <div>
-            <h3 className="text-lg font-semibold mb-4">Resources</h3>
-            <ul className="space-y-2 mb-6">
-              {navigation.resources.map((item) => (
-                <li key={item.name}>
-                  <a href={item.href} className="text-gray-400 hover:text-white transition-colors">
-                    {item.name}
-                  </a>
-                </li>
-              ))}
-            </ul>
-            <h3 className="text-lg font-semibold mb-4">Company</h3>
-            <ul className="space-y-2">
-              {navigation.company.map((item) => (
-                <li key={item.name}>
-                  <a href={item.href} className="text-gray-400 hover:text-white transition-colors">
-                    {item.name}
-                  </a>
-                </li>
-              ))}
-            </ul>
-          </div>
-          
-          {/* Contact & Legal */}
-          <div>
-            <h3 className="text-lg font-semibold mb-4">Contact</h3>
-            <ul className="space-y-3 mb-6">
-              <li className="flex items-start">
-                <MapPinIcon className="w-5 h-5 text-gray-400 mr-3 mt-0.5" />
-                <span className="text-gray-400">123 Cloud Street, San Francisco, CA 94105</span>
-              </li>
-              <li className="flex items-center">
-                <PhoneIcon className="w-5 h-5 text-gray-400 mr-3" />
-                <span className="text-gray-400">+1 (555) 123-4567</span>
-              </li>
-              <li className="flex items-center">
-                <MailIcon className="w-5 h-5 text-gray-400 mr-3" />
-                <span className="text-gray-400">support@cloudfi-labs.com</span>
-              </li>
-            </ul>
-            
-            <h3 className="text-lg font-semibold mb-4">Legal</h3>
-            <ul className="space-y-2">
-              {navigation.legal.map((item) => (
-                <li key={item.name}>
-                  <a href={item.href} className="text-gray-400 hover:text-white transition-colors">
-                    {item.name}
-                  </a>
-                </li>
-              ))}
-            </ul>
+          {/* Navigation Links */}
+          <div className="md:col-span-1">
+            <div className="grid grid-cols-2 gap-8">
+              {/* Left Column */}
+              <div>
+                <h3 className="text-lg font-semibold mb-4">Products</h3>
+                <ul className="space-y-2 mb-6">
+                  {navigation.products.map((item) => (
+                    <li key={item.name}>
+                      <a href={item.href} className="text-gray-400 hover:text-white transition-colors">
+                        {item.name}
+                      </a>
+                    </li>
+                  ))}
+                </ul>
+                
+                <h3 className="text-lg font-semibold mb-4">Solutions</h3>
+                <ul className="space-y-2 mb-6">
+                  {navigation.solutions.map((item) => (
+                    <li key={item.name}>
+                      <a href={item.href} className="text-gray-400 hover:text-white transition-colors">
+                        {item.name}
+                      </a>
+                    </li>
+                  ))}
+                </ul>
+                
+                <h3 className="text-lg font-semibold mb-4">Company</h3>
+                <ul className="space-y-2">
+                  {navigation.company.map((item) => (
+                    <li key={item.name}>
+                      <a href={item.href} className="text-gray-400 hover:text-white transition-colors">
+                        {item.name}
+                      </a>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+              
+              {/* Right Column */}
+              <div>
+                <h3 className="text-lg font-semibold mb-4">Resources</h3>
+                <ul className="space-y-2 mb-6">
+                  {navigation.resources.map((item) => (
+                    <li key={item.name}>
+                      <a href={item.href} className="text-gray-400 hover:text-white transition-colors">
+                        {item.name}
+                      </a>
+                    </li>
+                  ))}
+                </ul>
+                
+                <h3 className="text-lg font-semibold mb-4">Legal</h3>
+                <ul className="space-y-2 mb-6">
+                  {navigation.legal.map((item) => (
+                    <li key={item.name}>
+                      <a href={item.href} className="text-gray-400 hover:text-white transition-colors">
+                        {item.name}
+                      </a>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            </div>
           </div>
         </div>
         
