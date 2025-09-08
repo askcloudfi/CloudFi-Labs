@@ -24,6 +24,7 @@
 - **[Development Guidelines](./development-guidelines.md)** - Coding standards and best practices
 - **[Deployment Guide](./deployment-guide.md)** - Release management and deployment processes
 - **[User-Facing Pages](./user-facing-pages.md)** - Documentation of all user-facing pages
+- **[Admin Pages](./admin-pages.md)** - Documentation of all administrative pages
 - **[Footer Design](./footer-design.md)** - Footer component design and implementation
 
 ---

@@ -15,19 +15,26 @@ import {
   LogOut,
   CreditCard,
   Shield,
-  Folder
+  Folder,
+  Lock,
+  Package
 } from 'lucide-react'
 import AdminAuthCheck from '@/components/AdminAuthCheck'
 
 const navigation = [
-  { name: 'Dashboard', href: '/admin', icon: LayoutDashboard },
-  { name: 'Users', href: '/admin/users', icon: Users },
-  { name: 'Projects', href: '/admin/projects', icon: Folder },
-  { name: 'Reports', href: '/admin/reports', icon: FileText },
-  { name: 'Analytics', href: '/admin/analytics', icon: BarChart3 },
-  { name: 'Billing', href: '/admin/billing', icon: CreditCard },
-  { name: 'Audit Logs', href: '/admin/audit', icon: Shield },
-  { name: 'Settings', href: '/admin/settings', icon: Settings },
+  { name: 'Dashboard', href: '/admin' as const, icon: LayoutDashboard },
+  { name: 'Users', href: '/admin/users' as const, icon: Users },
+  { name: 'Projects', href: '/admin/projects' as const, icon: Folder },
+  { name: 'Reports', href: '/admin/reports' as const, icon: FileText },
+  { name: 'Analytics', href: '/admin/analytics' as const, icon: BarChart3 },
+  { name: 'Billing', href: '/admin/billing' as const, icon: CreditCard },
+  { name: 'Subscriptions', href: '/admin/subscription' as const, icon: Package },
+  { name: 'Audit Logs', href: '/admin/audit' as const, icon: Shield },
+  { name: 'API Management', href: '/admin/api' as const, icon: Shield },
+  { name: 'Logs Management', href: '/admin/logs' as const, icon: FileText },
+  { name: 'Backup Management', href: '/admin/backups' as const, icon: Shield },
+  { name: 'Security', href: '/admin/security' as const, icon: Lock },
+  { name: 'Settings', href: '/admin/settings' as const, icon: Settings },
 ]
 
 export default function AdminLayout({

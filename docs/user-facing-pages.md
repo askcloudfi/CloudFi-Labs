@@ -302,6 +302,8 @@ This document provides detailed information about all user-facing pages in the C
   - Billing information
   - Responsive tabbed interface
 
+For detailed information about all admin pages, see the [Admin Pages Documentation](./admin-pages.md).
+
 ## 🎨 Design Principles
 
 All user-facing pages follow these design principles:
