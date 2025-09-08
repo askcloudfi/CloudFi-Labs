@@ -23,6 +23,7 @@
 - **[Setup Guide](./setup-guide.md)** - Complete development environment setup
 - **[Development Guidelines](./development-guidelines.md)** - Coding standards and best practices
 - **[Deployment Guide](./deployment-guide.md)** - Release management and deployment processes
+- **[User-Facing Pages](./user-facing-pages.md)** - Documentation of all user-facing pages
 
 ---
 

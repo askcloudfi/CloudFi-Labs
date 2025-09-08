@@ -21,6 +21,7 @@
 - **[🗄️ Database Schema](./docs/database-schema.md)** - Database structure and relationships
 - **[📝 Development Guidelines](./docs/development-guidelines.md)** - Coding standards and best practices
 - **[🚢 Deployment Guide](./docs/deployment-guide.md)** - Release management and deployment processes
+- **[📱 User-Facing Pages](./docs/user-facing-pages.md)** - Documentation of all user-facing pages
 
 ### 🎯 Quick Links
 - **[🚀 Get Started](#-quick-start)** - Set up the project in minutes

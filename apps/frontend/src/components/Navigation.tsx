@@ -23,51 +23,52 @@ export default function Navigation() {
   const navItems = [
     {
       name: 'Products',
-      href: '#',
+      href: '/products',
       subItems: [
-        { name: 'Cloud Cost Management', href: '#' },
-        { name: 'Financial Analytics', href: '#' },
-        { name: 'Compliance Dashboard', href: '#' },
-        { name: 'Team Collaboration', href: '#' },
+        { name: 'Cloud Cost Management', href: '/products/cost-management' },
+        { name: 'Financial Analytics', href: '/products/analytics' },
+        { name: 'Compliance Dashboard', href: '/products/compliance' },
+        { name: 'Team Collaboration', href: '/products/collaboration' },
       ],
     },
     {
       name: 'Solutions',
-      href: '#',
+      href: '/solutions',
       subItems: [
-        { name: 'Enterprise Finance', href: '#' },
-        { name: 'Startup Growth', href: '#' },
-        { name: 'Multi-Cloud Management', href: '#' },
-        { name: 'Regulatory Compliance', href: '#' },
+        { name: 'Enterprise Finance', href: '/solutions/enterprise' },
+        { name: 'Startup Growth', href: '/solutions/startup' },
+        { name: 'Multi-Cloud Management', href: '/solutions/multi-cloud' },
+        { name: 'Regulatory Compliance', href: '/solutions/compliance' },
       ],
     },
     {
       name: 'Resources',
-      href: '#',
+      href: '/resources',
       subItems: [
-        { name: 'Documentation', href: '#' },
-        { name: 'Case Studies', href: '#' },
-        { name: 'Blog', href: '#' },
-        { name: 'API Reference', href: '#' },
+        { name: 'Documentation', href: '/resources/documentation' },
+        { name: 'Case Studies', href: '/resources/case-studies' },
+        { name: 'Blog', href: '/resources/blog' },
+        { name: 'API Reference', href: '/resources/api' },
       ],
     },
     {
       name: 'Pricing',
-      href: '#',
+      href: '/pricing',
       subItems: [
-        { name: 'Plans Overview', href: '#' },
-        { name: 'Compare Plans', href: '#' },
-        { name: 'Enterprise Options', href: '#' },
+        { name: 'Plans Overview', href: '/pricing' },
+        { name: 'Compare Plans', href: '/pricing/compare' },
+        { name: 'Enterprise Options', href: '/pricing/enterprise' },
       ],
     },
     {
       name: 'Company',
-      href: '#',
+      href: '/company',
       subItems: [
-        { name: 'About Us', href: '#' },
-        { name: 'Careers', href: '#' },
-        { name: 'Contact', href: '#' },
-        { name: 'Partners', href: '#' },
+        { name: 'About Us', href: '/company/about' },
+        { name: 'Careers', href: '/company' },
+        { name: 'News', href: '/company/news' },
+        { name: 'Contact', href: '/company/contact' },
+        { name: 'Partners', href: '/company/partners' },
       ],
     },
   ]
@@ -78,7 +79,7 @@ export default function Navigation() {
         <div className="flex justify-between items-center">
           {/* Logo */}
           <div className="flex items-center space-x-2">
-            <CloudIcon className="w-8 h-8 text-primary-600" />
+            <CloudIcon className="w-8 h-8 text-blue-600" />
             <span className="text-xl font-bold text-gray-900">CloudFi Labs</span>
           </div>
 
@@ -88,7 +89,7 @@ export default function Navigation() {
               <div key={item.name} className="relative group">
                 <Link 
                   href={item.href} 
-                  className="text-gray-700 hover:text-primary-600 font-medium transition-colors"
+                  className="text-gray-700 hover:text-blue-600 font-medium transition-colors"
                 >
                   {item.name}
                 </Link>
@@ -98,7 +99,7 @@ export default function Navigation() {
                       <Link
                         key={subItem.name}
                         href={subItem.href}
-                        className="block px-4 py-2 text-gray-700 hover:bg-primary-50 hover:text-primary-600"
+                        className="block px-4 py-2 text-gray-700 hover:bg-blue-50 hover:text-blue-600"
                       >
                         {subItem.name}
                       </Link>
@@ -111,10 +112,10 @@ export default function Navigation() {
 
           {/* Right side buttons */}
           <div className="hidden md:flex items-center space-x-4">
-            <button className="text-gray-700 hover:text-primary-600 font-medium">
+            <button className="text-gray-700 hover:text-blue-600 font-medium">
               Login
             </button>
-            <button className="bg-primary-600 hover:bg-primary-700 text-white font-medium py-2 px-4 rounded-lg transition-colors duration-200">
+            <button className="bg-blue-600 hover:bg-blue-700 text-white font-medium py-2 px-4 rounded-lg transition-colors duration-200">
               Get Started
             </button>
           </div>
@@ -136,7 +137,7 @@ export default function Navigation() {
                 <div key={item.name}>
                   <Link 
                     href={item.href} 
-                    className="block text-gray-700 hover:text-primary-600 font-medium py-2"
+                    className="block text-gray-700 hover:text-blue-600 font-medium py-2"
                     onClick={() => setIsMenuOpen(false)}
                   >
                     {item.name}
@@ -147,7 +148,7 @@ export default function Navigation() {
                         <Link
                           key={subItem.name}
                           href={subItem.href}
-                          className="block text-gray-600 hover:text-primary-600 py-1"
+                          className="block text-gray-600 hover:text-blue-600 py-1"
                           onClick={() => setIsMenuOpen(false)}
                         >
                           {subItem.name}
@@ -158,10 +159,10 @@ export default function Navigation() {
                 </div>
               ))}
               <div className="pt-4 flex flex-col space-y-3">
-                <button className="w-full text-center text-gray-700 hover:text-primary-600 font-medium py-2 border border-gray-300 rounded-lg">
+                <button className="w-full text-center text-gray-700 hover:text-blue-600 font-medium py-2 border border-gray-300 rounded-lg">
                   Login
                 </button>
-                <button className="w-full text-center bg-primary-600 hover:bg-primary-700 text-white font-medium py-2 rounded-lg transition-colors duration-200">
+                <button className="w-full text-center bg-blue-600 hover:bg-blue-700 text-white font-medium py-2 rounded-lg transition-colors duration-200">
                   Get Started
                 </button>
               </div>

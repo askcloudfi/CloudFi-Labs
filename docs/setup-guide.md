@@ -515,6 +515,48 @@ npm test                 # Run backend tests
 npm run test:watch       # Tests in watch mode
 ```
 
+### New User-Facing Pages
+
+The following user-facing pages have been added to the application:
+
+#### Company Pages
+- `/company` - Careers page with job listings
+- `/company/about` - Company information and leadership team
+- `/company/contact` - Contact form and company information
+- `/company/news` - Company news and updates
+- `/company/partners` - Partner information and programs
+
+#### Product Pages
+- `/products` - Overview of all products
+- `/products/cost-management` - Detailed information about cost management features
+
+#### Solutions Pages
+- `/solutions` - Overview of CloudFi Labs solutions
+- `/solutions/enterprise` - Enterprise solutions
+- `/solutions/startup` - Startup growth solutions
+- `/solutions/multi-cloud` - Multi-cloud management solutions
+- `/solutions/compliance` - Regulatory compliance solutions
+
+#### Resource Pages
+- `/resources` - Central hub for all resources
+- `/resources/blog` - Company blog with industry insights
+- `/resources/documentation` - Comprehensive product documentation
+- `/resources/api` - Detailed API documentation
+- `/resources/case-studies` - Customer success stories and testimonials
+- `/resources/contact` - Resource-specific contact information
+- `/resources/partners` - Partner program information
+
+#### Pricing Page
+- `/pricing` - Subscription plans and pricing information
+
+#### Admin Pages
+- `/admin/profile` - Administrator profile management
+
+#### Test Pages
+- `/test` - API connectivity testing page
+
+For detailed information about these pages, see the [User-Facing Pages Documentation](./user-facing-pages.md).
+
 ## 🐛 Troubleshooting
 
 ### Common Issues and Solutions
